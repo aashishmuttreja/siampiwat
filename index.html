@@ -1,0 +1,928 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<!-- Infinity Sandbox Lib -->
+<script type="text/javascript" src="https://c.oracleinfinity.io/acs/account/htc8hv4be3/js/anz/odc.js"></script>
+
+<script type="text/javascript">
+      var getEmail = function() {
+        if (localStorage.email) {
+          return localStorage.email;
+        }
+        return 'ANONYMOUS';
+      };
+
+      
+      var refresh = function() {
+        localStorage.email = ''; // clear it
+        location.reload();
+      }
+
+      window.onload = function() {
+        $('#responsys-form').on('submit', function(e) {
+          // set to localstorage
+          var _email = $("#EMAIL_ADDRESS_").val();
+          localStorage.email = _email;
+
+          ORA.click({
+            "sendSessionInfo": true,
+            "data": {
+                "action": "submitForm",
+                "data_email": getEmail()
+            }
+          });
+        });
+
+        // receive msg frm iframe
+        // have to do it this way because cross domain cannot read content from iframe
+        window.onmessage = function(event) {
+          //Form Submit Success
+          console.log(event.data);
+          if (event.data == 'Form Submit Success') {
+            //disable submit button
+            $('button[type="submit"]').attr('disabled', 'true');
+            //show success
+            $('button[type="submit"]').text('Done');
+          }
+        };
+
+           
+
+        // tag link clicks
+        $('a').attr('href', '');
+        $('a').click(function() {
+          var text = $(this).text();
+          ORA.click({
+            "sendSessionInfo": true,
+            "data": {
+                "action": "linkClick",
+                "link_text": text,
+                "data_email": getEmail()
+            }
+          });
+        });
+
+        // button
+        $('button').off().click(function() {  
+          console.log('btn click')
+          var text = $(this).attr('data-original-title');
+
+          if (!text) {
+            text = $(this).text(); 
+          }
+
+          console.log(text + 'btn click ');
+
+          ORA.click({
+            "sendSessionInfo": true,
+            "data": {
+                "action": "btnClick",
+                "link_text": text,
+                "data_email": getEmail()
+            }
+          });
+        });
+
+        // override button, tag search button
+        $('#searchBtn').off().click(function() {
+          ORA.click({
+            "sendSessionInfo": true,
+            "data": {
+                "action": "search",
+                "search_term": getSearchTerm(),
+                "data_email": getEmail()
+            }
+          });
+        });
+
+        // override button, simulate abandon
+        $('#cartBtn').off().click(function() {
+          ORA.click({
+            "sendSessionInfo": true,
+            "data": {
+                "action": "abandon",
+                "data_email": getEmail()
+            }
+          });
+        });  
+      };
+    </script>
+	
+
+	
+
+
+<meta name="google-site-verification" content="googleb243157549cd74e3.html">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property='og:title' content='Siam Paragon | Siam Paragon' />
+<meta property='og:type' content='website' />
+<meta property='og:site_name' content='siamparagon.co.th' />
+<meta property='og:url' content='https://www.siamparagon.co.th/' />
+<meta property='og:image' content='https://www.siamparagon.co.th/public/images/fb-share.jpg?v=1.3' />
+<meta property="og:description" content="Falsh Venture"/>
+<!--<meta property="fb:admins" content="640128794"/>-->
+<meta property="fb:app_id" content="1738876623046805"/>
+<title>Siam Paragon</title>
+<link rel='index' title='Siam Paragon' href='http://siamparagon.co.th' />
+<meta name="description" content="Siam Paragon" />
+<meta name="keywords" content="Siam Paragon" />
+<base href="https://www.siamparagon.co.th/public/" />
+<link rel="shortcut icon" type="image/x-icon" href="https://www.siamparagon.co.th/public/images/favicon.ico?v=1.4" />
+
+<!-- Global site tag (gtag.js) - Google Ads: 786003014 --> 
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-786003014"></script> 
+<script> 
+	window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-786003014'); 
+</script>
+
+
+<script>
+
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+   ga('create', 'UA-82289441-1', 'auto');
+   ga('send', 'pageview');
+
+</script>
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '229414121832496');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=229414121832496&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+</head>
+
+<body>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 984638999;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+   <div class="iframe-code">
+      <img height="0" width="0" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/984638999/?value=0&amp;guid=ON&amp;script=0"/>
+   </div>
+</noscript>
+<link rel="stylesheet" media="screen" href="https://www.siamparagon.co.th/public/css/style.css?v=2.1.9" />
+<link rel="stylesheet" media="screen" href="https://www.siamparagon.co.th/public/css/pagination.css?v=1.1" />
+<link rel="stylesheet" media="screen and (max-width: 1365px)" href="https://www.siamparagon.co.th/public/css/netbook.css?v=1.0.7" />
+<link rel="stylesheet" media="screen and (max-width: 1259px)" href="https://www.siamparagon.co.th/public/css/tablet.css?v=1.0.6" />
+<link rel="stylesheet" media="screen and (max-width: 1036px)" href="https://www.siamparagon.co.th/public/css/desktop-old.css?v=1.0.1" />
+<link rel="stylesheet" media="screen and (max-width: 1019px)" href="https://www.siamparagon.co.th/public/css/pad.css?v=1.1.2" />
+<link rel="stylesheet" media="screen and (max-width: 767px)" href="https://www.siamparagon.co.th/public/css/mobile-landscape.css?v=1.2.5" />
+<link rel="stylesheet" media="screen and (max-width: 415px)" href="https://www.siamparagon.co.th/public/css/mobile-portrait.css?v=1.1.7" />
+<link rel="stylesheet" href="https://www.siamparagon.co.th/public/font-awesome-4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.siamparagon.co.th/public/css/sp-slide.css">
+
+<script type="text/javascript" src="https://www.siamparagon.co.th/public/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="https://www.siamparagon.co.th/public/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://www.siamparagon.co.th/public/js/jquery.matchHeight.js"></script>
+<script type="text/javascript" src="https://www.siamparagon.co.th/public/js/custom.js?v=1.2"></script>
+<script type="text/javascript" src="https://www.siamparagon.co.th/public/assets/js/share.js?v=1.0"></script>
+<script type="text/javascript" src="assets/js/vendors/TweenMax.min.js"></script>
+<script type="text/javascript" src="assets/js/vendors/pixi/pixi.min.js?v=4.5.5"> </script>
+<script type="text/javascript" src="assets/js/base/global.js"></script>
+<script type="text/javascript" src="assets/js/base/base.js"></script>
+<script type="text/javascript" src="assets/js/components/sp-slide.js?v=1.0"></script>
+
+<script src="js/jquery.flexslider.js"></script>
+<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
+<script type="text/javascript" src="js/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<div id="header">
+<div id="logo"><a href="https://www.siamparagon.co.th/"><img src="images/logo.png?v=1.2" /></a></div>
+<div class="best-offer"><a href="https://www.siamparagon.co.th/bestoffer/"><img src="images/best-offer-header.png" /></a></div>
+<div id="nav-top">
+	<div class="nav-sign">
+
+	</div>
+   <div class="nav-main">
+      <a href="https://www.siamparagon.co.th/happening">HAPPENING</a>
+      <a href="https://www.siamparagon.co.th/privilege">PRIVILEGES</a>
+      <a href="https://www.siamparagon.co.th/directory">DIRECTORY</a>
+      <a href="https://www.siamparagon.co.th/tourist">TOURIST</a>
+      <!-- <a href="https://www.siamparagon.co.th/shop-recommend">SHOP RECOMMEND</a> -->
+   </div>
+   <br class="clear" />
+   <i class="fa fa-search"></i>
+</div>
+<div id="search-field">
+	<form method="get" class="searchform" action="https://www.siamparagon.co.th/search">
+		<p>
+			<input type="text" placeholder="keyword" value="" name="keyword" id="s" placeholder="search" />
+			<input type="submit" value="Search">
+			<span class="result">About <span class="total">0</span> results</span>
+		</p>
+		<p class="pagination-field">
+			Type To Search...
+		</p>
+	</form>
+	<div class="close"></div>
+</div>
+<!-- mobile menu -->
+<div class="mobile-header" style="display:none;">
+	<button class="hamberger">
+		<span></span>
+	</button>
+	<div class="logo-wrapper">
+		<a href="https://www.siamparagon.co.th/"><img src="images/logo-white.png?v=1.0" /></a>
+	</div>
+	<div class="action-wrapper">
+		<a href="#" search-trigger><i class="fa fa-search"></i></a>
+	</div>
+</div>
+  <div class="mobile-panel" style="display:none;">
+  	<div class="header">
+  		<button class="close"><span></span></button>
+  	</div>
+    <div class="content">
+      <div id="m-menu" class="tab-content" style="display:block;">
+  			<ul class="mobile-menu">
+          <li class="has-sub">
+            <a href="#" class="notmatch">HAPPENING</a>
+            <ul class="sub-menu">
+              <li class='back-trigger'><a href="#" ><img src="images/btn-back-white.png?v=1.0" /></a></li>
+							<li><a href="https://www.siamparagon.co.th/happening/news">NEWS</a></li>
+							<li><a href="https://www.siamparagon.co.th/bestoffer">BESTOFFER</a></li>
+							<li><a href="https://www.siamparagon.co.th/happening/event">EVENT</a></li>
+							<li><a href="https://www.siamparagon.co.th/happening/promotion">PROMOTION</a></li>
+            </ul>
+          </li>
+          <li><a href="https://www.siamparagon.co.th/privilege" class="notmatch">PRIVILEGES</a></li>
+          <li><a href="https://www.siamparagon.co.th/directory" class="notmatch">DIRECTORY</a></li>
+          <li><a href="https://www.siamparagon.co.th/tourist" class="notmatch">TOURIST</a></li>
+  			</ul>
+  		</div>
+    </div>
+  </div>
+</div>
+<script>
+					$(document).ready(function(){
+						$('.mobile-panel a[href="#"],.mobile-header a[href="#"]').on('click',function(e){
+							e.preventDefault();
+						});
+
+						$('.mobile-header .hamberger').on('click',openMobileNav);
+						$('.mobile-panel .close').on('click',closeMobileNav);
+
+						$('.mobile-menu .has-sub > a').on('click',function(e){
+							e.preventDefault();
+							$(this).siblings('.sub-menu').show(0,function(){
+								$(this).addClass('is-open');
+							})
+						});
+
+						$('.mobile-menu .sub-menu .back-trigger a').on('click',function(e){
+							e.preventDefault();
+							$('.mobile-menu .sub-menu').removeClass('is-open');
+							setTimeout(function(){
+								$('.mobile-menu .sub-menu').hide(0);
+							},600);
+						});
+
+						//tab
+						$('.mobile-panel .tab-trigger').on('click',function(e){
+							e.preventDefault();
+							var tabId = $(this).data('tab');
+							if($(tabId).length){
+								$('.mobile-panel .tab-trigger').removeClass('is-active');
+								$(this).addClass('is-active');
+								$('.mobile-panel .tab-content').each(function(){
+									if($(tabId)[0] === $(this)[0]){
+										$(this).show(0);
+									}else{
+										$(this).hide(0);
+									}
+								});
+							}
+						});
+
+
+						// search
+						$('[search-trigger]').on('click',function(){
+							$('#search-field').show(0);
+						});
+					});
+
+					function openMobileNav(){
+						$('.mobile-panel').addClass('is-open');
+						$('body').addClass('disable-scroll');
+
+						$('.mobile-panel .tab-trigger').eq(0).trigger('click');
+					}
+
+					function closeMobileNav(){
+						$('.mobile-panel').removeClass('is-open');
+						$('body').removeClass('disable-scroll');
+					}
+
+					$(window).resize(function(){
+						if($(window).width() >= 768){
+							closeMobileNav();
+						}
+					});
+				</script>
+﻿<!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+<link rel="stylesheet" type="text/css" href="wowslider/style.css?v=1.0" />
+<!--<script type="text/javascript" src="wowslider/jquery.js"></script>-->
+<!-- End WOWSlider.com HEAD section -->
+<link href="assets/cookie_pdpa.css?12345789" rel="stylesheet" type="text/css" media="all">
+<script type="text/javascript" src="assets/popup_pdpa.js"></script>
+
+<script>
+
+function setBoxLi(){
+
+	$('.box-preview').each(function(index, element) {
+
+		$(this).find('.left').css('height','auto');
+		$(this).find('.left img').css('height','auto');
+		$(this).find('.left .desc div').css('height','auto');
+
+		var h = $(this).find('.left img').height();
+
+
+		if(h > 0){
+			if(h%2){
+				h = h - 1;
+			}
+
+			if($(window).width() >= 767){
+
+				$(this).find('.right ul li').height(h * 0.5);
+				$(this).find('.left').height(h);
+				$(this).find('.left img').height(h);
+				$(this).find('.left .desc div').height(h);
+
+			}else{
+
+				$(this).find('.right ul li').height(h);
+				$(this).find('.left').height(h);
+				$(this).find('.left img').height(h);
+				$(this).find('.left .desc div').height(h);
+			}
+		}
+	});
+}
+
+$(document).ready(function(e) {
+
+	setBoxLi();
+});
+
+$(window).load(function() {
+
+	setBoxLi();
+});
+
+$(window).resize(function(){
+
+	setBoxLi();
+});
+
+</script>
+
+<div
+hero-image
+<img src="https://www.siamparagon.co.th/public/upload/347c598b4baa8245c830074542d59def.jpg" alt="promotion" width="500" height="600">
+
+</div>
+
+ <div class="wrap form-popup" id="myForm">
+          <form id="responsys-form" action="https://demo028.rsys5.net/pub/rf" class="form-container" method="POST" target="hidden-form">
+    
+            <label for="psw"><b>First Name</b></label>
+            <input type="text" placeholder="Enter First Name" id="FIRST_NAME" name="FIRST_NAME" required>
+        	 
+            <label for="psw"><b>Last Name</b></label>
+            <input type="text" placeholder="Enter Last Name" id="LAST_NAME" name="LAST_NAME" required>
+            
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" id="EMAIL_ADDRESS_" name="EMAIL_ADDRESS_" required>
+
+            <input type="hidden" name="_ri_" value="X0Gzc2X%3DYQpglLjHJlYQGN1zazcSf1kPNkAEzbvUzfSlLGRzaelTJzftYzd9zbJVwjpnpgHlpgneHmgJoXX0Gzc2X%3DYQpglLjHJlYQGzbzdbzezdvza2C5UcdBrKF7zf0jfzaelTJzftYzd9zbJ">
+            <input type="hidden" name="CREATED_SOURCE" value="MCX2019">
+
+            <button type="submit" class="btn">Submit</button>
+            <button type="button" class="btn cancel" onclick="refresh()">Refresh</button>
+          </form>
+          <!-- Used for Rsys form submission -->
+          <iframe style="display:none" name="hidden-form" id="hidden-form-iframe"></iframe>
+        </div>
+
+        <script>
+        function openForm() {
+          document.getElementById("myForm").style.display = "block";
+        }
+        </script>
+		</div>
+
+<div id="homepage">
+<div class="wrap">
+
+
+
+
+
+    <div class="explore">
+        <h2><strong>ITS </strong> HAPPENING</h2>
+        <ul>
+                    <li>
+                <a href="https://www.siamparagon.co.th/happening/JOOX-x-SIAM-PARAGON-Top100-2020/1039" class="photo"><img src="upload/t-c0508f4566859564186344d07e5248c4.jpg" /></a>
+                <div class="right">
+                    <a href="https://www.siamparagon.co.th/happening/JOOX-x-SIAM-PARAGON-Top100-2020/1039" class="name">สนุกกับปรากฎการณ์ดนตรีและแฟชั่นสุดยิ่งใหญ่จาก JOOX และ SIAM PARAGON</a>
+                    <p>ถ้าคุณคือคนดนตรีที่มีหัวใจรักแฟชั่นต้องมางานนี้!! ฟินกับ 100 เพลงฮิตจากศิลปินชั้นนำและแฟชั่นโชว์จากไทยดีไซเนอร์ชั้นแนวหน้าของเมืองไทย</p>
+                </div>
+            </li>
+                    <li>
+                <a href="https://www.siamparagon.co.th/happening/Thai-Ocha-at-Siam-Paragon/1033" class="photo"><img src="upload/t-cdbedd26ea58cad17077adadc2a33274.jpg" /></a>
+                <div class="right">
+                    <a href="https://www.siamparagon.co.th/happening/Thai-Ocha-at-Siam-Paragon/1033" class="name">“ไทยโอชา” สุดยอดอาหารจานเด็ดแห่งสยามประเทศที่คุณต้องไม่พลาด!</a>
+                    <p>อร่อยถูกปาก รสชาติถูกใจกับร้านอาหารพื้นถิ่นทั้งคาวหวานชื่อดังจากทั่วประเทศที่รวบรวมมาให้คุณได้ชิมใจกลางย่านสยาม</p>
+                </div>
+            </li>
+                    <li>
+                <a href="https://www.siamparagon.co.th/happening/The-Ultimate-Beauty-Lifestyle-2020/1030" class="photo"><img src="upload/t-efa496005c59b72c56525f612370ba85.jpg" /></a>
+                <div class="right">
+                    <a href="https://www.siamparagon.co.th/happening/The-Ultimate-Beauty-Lifestyle-2020/1030" class="name">พร้อมรับบริการความงามและไลฟ์สไตล์เหนือระดับสำหรับคุณ</a>
+                    <p>สยามพารากอนพร้อมพาคุณไปเต็มอิ่มกับข้อเสนอสุดพิเศษ พร้อมแลกรับ Siam Gift Card สูงสุด 4,000 บาท!</p>
+                </div>
+            </li>
+                </ul>
+    </div>
+
+</div>
+
+<div class="banner banner-ads ads-1" data-id="1"><img src="images/banner/banner-platium-m-card.png" /></div>
+
+<div class="box-preview wrap">
+	<div class="col left">
+    	<img src="upload/cbe81020c7c8e964e3459cf6b663af90.jpg" />
+		<div class="nav">
+            <h1>PROMOTION TODAY</h1>
+            <hr />
+            <h2>It’s all about special deals</h2>
+        </div>
+        <a href="https://www.siamparagon.co.th/happening/KBANK-EXCLUSIVE-DINING-ONESIAM/1042" class="desc">
+            <div>
+                <h3>KBANK EXCLUSIVE DINING @ ONESIAM</h3>
+                <p>1 พฤศจิกายน 2563 – 31 ธันวาคม 2563</p>
+                <i></i>
+            </div>
+        </a>
+    </div>
+    <div class="col right">
+    	<ul>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/ONESIAM-Shop-X2-2020/1037" class="photo"><img src="upload/t-b3fb4068eeefcf922782c7e417f7081b.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/ONESIAM-Shop-X2-2020/1037" class="desc">
+                <div>
+                    <h3>ช้อป ร่าง พัง ยกกำลัง 2</h3>
+                    <p>30 ตุลาคม 2563 - 29 พฤศจิกายน 2563</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/ONESIAM-Shop-Dee-Mee-Khun/1036" class="photo"><img src="upload/t-428e2b1a9fef681316419db159f17200.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/ONESIAM-Shop-Dee-Mee-Khun/1036" class="desc">
+                <div>
+                    <h3>ONESIAM ช้อปดีมีคืน</h3>
+                    <p>23 ตุลาคม 63 – 1 พฤศจิกายน 63</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/SCB-Fashionista-Shopping-2020/1034" class="photo"><img src="upload/t-001635caea70dfaafa77615e810c0865.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/SCB-Fashionista-Shopping-2020/1034" class="desc">
+                <div>
+                    <h3>แฟชั่นนิสต้า ช้อปปัง กับบัตรเครดิต SCB</h3>
+                    <p>16 ต.ค. 63 – 15 พ.ย. 63</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/ONESIAM-DEAL-OF-ALL-DREAMS-2020/1031" class="photo"><img src="upload/t-d92f392759bcfe85abbae281e3b6f2a8.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/ONESIAM-DEAL-OF-ALL-DREAMS-2020/1031" class="desc">
+                <div>
+                    <h3>ONESIAM DEAL OF ALL DREAMS</h3>
+                    <p>2 ต.ค. 63 – 25 ต.ค. 63</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/VIZ-CARD-Acquisition-New-Member/1032" class="photo"><img src="upload/t-d56aed44035d2181dcaebaba3e9f07c6.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/VIZ-CARD-Acquisition-New-Member/1032" class="desc">
+                <div>
+                    <h3>VIZ CARD Acquisition New Member</h3>
+                    <p>วันที่ 2 ตุลาคม 2563 - 11 ตุลาคม 2563 </p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/ONESIAM-DINING-x-ENTERTAINING-TREAT/1029" class="photo"><img src="upload/t-eba9539df84ee68b0a36e1c3a804126a.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/ONESIAM-DINING-x-ENTERTAINING-TREAT/1029" class="desc">
+                <div>
+                    <h3>ONESIAM DINING x ENTERTAINING TREAT</h3>
+                    <p>25 กันยายน 2563 – 13 ตุลาคม 2563</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                </ul>
+    </div>
+</div>
+
+<div class="banner banner-ads ads-2" data-id="2"><a href="http://www.siamdiscovery.co.th/touristprivilege/registration"><img src="images/banner/banner_tourist_privilege.jpg" /></a></div>
+
+<div class="box-preview wrap">
+	<div class="col left">
+    	<img src="upload/9a6192e154fea2536afc05090ded3bab.jpg" />
+		<div class="nav">
+            <h1>EVENTS</h1>
+            <hr />
+            <h2>It’s all about socializing</h2>
+        </div>
+        <a href="https://www.siamparagon.co.th/happening/The-SaiJaiThai-Foundation-Event-2020/1041" class="desc">
+            <div>
+                <h3>สานสายใยเพื่อผลิตภัณฑ์สายใจไทย</h3>
+                <p>10 พฤศจิกายน - 16 พฤศจิกายน 2563</p>
+                <i></i>
+            </div>
+        </a>
+    </div>
+    <div class="col right">
+    	<ul>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/Siam-Paragon-Black-Weekend-Carnival-2020/1040" class="photo"><img src="upload/t-fd236343cb8fa8e09fa8b0baf6c3710b.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/Siam-Paragon-Black-Weekend-Carnival-2020/1040" class="desc">
+                <div>
+                    <h3>Siam Paragon Black Weekend Carnival</h3>
+                    <p>30 ตุลาคม 2563 - 1 พฤศจิกายน 2563</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/คิดถึงสมเด็จย่าครั้งที่23/1035" class="photo"><img src="upload/t-f3fb3604af13aba8abe5bb658a37e2bb.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/คิดถึงสมเด็จย่าครั้งที่23/1035" class="desc">
+                <div>
+                    <h3>“คิดถึง...สมเด็จย่า” ครั้งที่ 23 “ในความคิด...คำนึง”</h3>
+                    <p>วันที่ 21-25 ตุลาคม 2563 นี้ ณ ไลฟ์สไตล์ ฮอลล์ ชั้น 2 สยามพารากอน</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/Thailand-Luxurious-Vacation-Fair/1027" class="photo"><img src="upload/t-fbb76be9cf3b48fcf69ee9d77b6d5e45.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/Thailand-Luxurious-Vacation-Fair/1027" class="desc">
+                <div>
+                    <h3>Siam Paragon Thailand Luxurious Vacation Fair</h3>
+                    <p>24 กันยายน 2563 - 4 ตุลาคม 2563</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/Bangkok-Luxurious-Staycation-Fair-2020/1015" class="photo"><img src="upload/t-ccb5ed085d9fe4ad59c70e3c48e8ff5a.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/Bangkok-Luxurious-Staycation-Fair-2020/1015" class="desc">
+                <div>
+                    <h3>Siam Paragon Bangkok Luxurious Staycation Fair</h3>
+                    <p>ครั้งแรกที่โรงแรมหรูพร้อมใจมอบข้อเสนอพิเศษ พลาดไม่ได้!! 24 สิงหาคม – 6 กันยายน 2563 นี้ ณ สยามพารากอน </p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/Siri-Wattana-Cheshire-Foundation-2020/1011" class="photo"><img src="upload/t-6b80428a99db0be02a50718cea1ab144.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/Siri-Wattana-Cheshire-Foundation-2020/1011" class="desc">
+                <div>
+                    <h3>สัปดาห์พยากรณ์เพื่อสภากาชาดไทย ประจำปี 2563</h3>
+                    <p>14 สิงหาคม - 23 สิงหาคม 2563 ตั้งแต่เวลา 10.30-19.00 น.</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                	<li>
+            <div class="inner">
+            	<a href="https://www.siamparagon.co.th/happening/Siam-Paragon-One-in-A-Million-Love-Songs/1010" class="photo"><img src="upload/t-1c3a44fd80ae45eb3b8ce91727587df9.jpg" /></a>
+            </div>
+            <a href="https://www.siamparagon.co.th/happening/Siam-Paragon-One-in-A-Million-Love-Songs/1010" class="desc">
+                <div>
+                    <h3>Siam Paragon One in A Million Love Songs</h3>
+                    <p>12 สิงหาคม - 16 สิงหาคม 2563 นี้ ที่ ชั้น เอ็ม พาร์ค พารากอน</p>
+                    <i></i>
+                </div>
+            </a>
+            </li>
+                </ul>
+    </div>
+</div>
+
+
+      
+
+</div>
+<div id="popular">
+<h1>RECOMMENDED <strong>STORE</strong></h1>
+<div class="wrap">
+<ul>
+<li>
+	<a href="https://www.siamparagon.co.th/directory/shop/166" class="photo"><img src="upload/8a673e672e83c84106b9cd1c1d03e07e.png" /></a>
+    <div class="desc">
+        <a href="https://www.siamparagon.co.th/directory/shop/166">HEAR BY MUNKONG GADGET</a>
+    </div>
+</li>
+<li>
+	<a href="https://www.siamparagon.co.th/directory/shop/23" class="photo"><img src="upload/de1adecf487c00b9b28de770164c1db1.png" /></a>
+    <div class="desc">
+        <a href="https://www.siamparagon.co.th/directory/shop/23">MANDARIN ORIENTAL SHOP</a>
+    </div>
+</li>
+<li>
+	<a href="https://www.siamparagon.co.th/directory/shop/224" class="photo"><img src="upload/ecbc384997dd21308cc8ed603819b59b.png" /></a>
+    <div class="desc">
+        <a href="https://www.siamparagon.co.th/directory/shop/224">ISTUDIO</a>
+    </div>
+</li>
+<li>
+	<a href="https://www.siamparagon.co.th/directory/shop/621" class="photo"><img src="upload/c798047565457006c919fc71c9985869.jpg" /></a>
+    <div class="desc">
+        <a href="https://www.siamparagon.co.th/directory/shop/621">THE SCARLETT CLINIC</a>
+    </div>
+</li>
+<li>
+	<a href="https://www.siamparagon.co.th/directory/shop/626" class="photo"><img src="upload/bc7070da3cea5e1a6afe9f5f35371060.jpg" /></a>
+    <div class="desc">
+        <a href="https://www.siamparagon.co.th/directory/shop/626">ALEXANDER MCQUEEN</a>
+    </div>
+</li>
+<li>
+	<a href="https://www.siamparagon.co.th/directory/shop/547" class="photo"><img src="upload/cdb6fdbf68a8bef2144093f3cf6c36c9.jpg" /></a>
+    <div class="desc">
+        <a href="https://www.siamparagon.co.th/directory/shop/547">SIRIVANNAVARI</a>
+    </div>
+</li>
+</ul>
+<a href="https://www.siamparagon.co.th/" class="go-top">BACK TO TOP</a>
+</div>
+</div>
+
+<script>
+
+function setPopularHeight(){
+
+	$("#popular ul li .photo").css('height','auto');
+	$("#popular ul li .desc").css('height','auto');
+
+	var w = $("#popular ul li").eq(0).find('img').width(), heightDesc = $("#popular ul li").eq(0).find(".desc").height();
+
+	$("#popular ul li").each(function(index, element) {
+
+		if($(this).find('img').width() > w){ w = $(this).find('img').width(); }
+		if($(this).find('.desc').height() > heightDesc){ heightDesc = $(this).find('.desc').height(); }
+    });
+
+	$("#popular ul li .photo").height(w);
+	$("#popular ul li .desc").height(heightDesc);
+}
+
+$(document).ready(function(e) {
+
+	$("#popular .go-top").click(function(e) {
+
+		e.preventDefault();
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
+    });
+});
+
+$(window).load(function() {
+
+	setPopularHeight();
+});
+
+$(window).resize(function(){
+
+	setPopularHeight();
+});
+
+</script>
+<div id="footer">
+	<div class="wrap">
+		<div class="top">
+			<div class="col first">
+				<a href="#" class="find inactive">FIND STORE</a>
+				<p>
+					Opening hours : Everyday <br />
+					10.00 AM - 10.00 PM<br /><br />
+					<strong>Siam Paragon :</strong> <br />
+					<a href="tel:+6626108000">T : +66 2 610 8000</a><br /><br />
+					<strong>Paragon Department Store :</strong><br />
+					<a href="tel:+6626901000">T : +66 2 690 1000</a>
+				</p>
+			</div>
+			<div class="col second">
+				<div class="row">
+					<h3><a href="https://www.siamparagon.co.th/" class="inactive">ABOUT</a></h3>
+					<br />
+					<h3><a href="https://www.siamparagon.co.th/privacy-policy" target="privacy-policy">PRIVACY POLICY</a></h3>
+					<br />
+				</div>
+				<div class="row">
+					<p><a href="https://m.me/siamparagonshopping" class="ask" target="_blank"><img src="images/icon-ask-me-please.png?v=1.0"></a></p>
+				</div>
+			</div>
+			<div class="col col-floor">
+				<h3><a href="https://www.siamparagon.co.th/map-location">MAP & LOCATION</a></h3>
+				<ul>
+											<li><a href="https://www.siamparagon.co.th/directory/floor/5F---FIFTH-FLOOR/6">5F : FIFTH FLOOR</a></li>
+												<li><a href="https://www.siamparagon.co.th/directory/floor/4AF---FOURTH--A--FLOOR/7">4AF : FOURTH (A) FLOOR</a></li>
+												<li><a href="https://www.siamparagon.co.th/directory/floor/4F---FOURTH-FLOOR/8">4F : FOURTH FLOOR</a></li>
+												<li><a href="https://www.siamparagon.co.th/directory/floor/3F---THIRD-FLOOR/9">3F : THIRD FLOOR</a></li>
+												<li><a href="https://www.siamparagon.co.th/directory/floor/2F---SECOND-FLOOR/10">2F : SECOND FLOOR</a></li>
+												<li><a href="https://www.siamparagon.co.th/directory/floor/1F---FIRST-FLOOR/11">1F : FIRST FLOOR</a></li>
+												<li><a href="https://www.siamparagon.co.th/directory/floor/MF---MAIN-FLOOR/12">MF : MAIN FLOOR</a></li>
+												<li><a href="https://www.siamparagon.co.th/directory/floor/GF---GROUND-FLOOR/5">GF : GROUND FLOOR</a></li>
+												<li><a href="https://www.siamparagon.co.th/directory/floor/BF---BASEMENT-FLOOR/4">BF : BASEMENT FLOOR</a></li>
+										</ul>
+				<br>
+				<h3>
+					<a href="https://spwgcallcenter.siampiwat.in.th/maximo/" target="_blank">TENANT SERVICES</a>
+				</h3>
+
+			</div>
+
+				<br class="clear" />
+			</div>
+		</div>
+		<div class="bottom-other">
+			<a href="http://siamcenter.co.th/" target="_blank"><img src="images/footer/sc.png" alt=""></a>
+			<a href="http://www.siamdiscovery.co.th/" target="_blank"><img src="images/footer/sd.png" alt=""></a>
+			<a href="http://www.royalparagonhall.com/index.php" target="_blank"><img src="images/footer/sp.png" alt=""></a>
+			<a href="http://www.theemdistrict.com/" target="_blank"><img src="images/footer/em.png" alt=""></a>
+			<a href="http://www.themall.co.th/" target="_blank"><img src="images/footer/mall.png" alt=""></a>
+			<a href="http://www.majorbowlhit.com/" target="_blank"><img src="images/footer/bluo.png" alt=""></a>
+			<a href="http://www.majorcineplex.com/system/fourdx" target="_blank"><img src="images/footer/true4dx.png" alt=""></a>
+			<a href="http://www.majorcineplex.com/system/imax" target="_blank"><img src="images/footer/krungsri.png" alt=""></a>
+			<a href="http://www.majorcineplex.com/search?searchkeyword=paragon+cineplex" target="_blank"><img src="images/footer/cineplex.png" alt=""></a>
+			<a href="http://www.sealifebangkok.com/" target="_blank"><img src="images/footer/sealife.png" alt=""></a>
+			<a href="http://www.kidzania.co.th/" target="_blank"><img src="images/footer/kidzania_new.png?v=2.1" alt=""></a>
+		</div>
+		<div class="bottom"><span><strong>&copy;</strong>Copyright 2016 Siam Paragon Development Co.,Ltd. All Rights Reserved.</span><a href="https://www.facebook.com/siamparagonshopping" target="_blank"><img src="images/icon-fb.png" /></a> <a href="https://twitter.com/siam_paragon" target="_blank"><img src="images/icon-tw.png" /></a> <a href="https://www.instagram.com/siamparagonshopping/" target="_blank"><img src="images/icon-in.png" /></a> <a href="https://www.youtube.com/user/ParagonCorner" target="_blank"><img src="images/icon-yb.png" /></a></div>
+	</div>
+
+	<script>
+
+	function adsShow(position, category){
+
+		$.post(
+
+			"https://www.siamparagon.co.th/ads" , { position : position, category : category },
+
+			function(data){
+
+				for(var n=0;n<data.ads.length;n++){
+					if($(".ads-"+data.ads[n].position).length){ $(".ads-"+data.ads[n].position).html(data.ads[n].code).attr('data-id',data.ads[n].id); }
+				}
+			},
+			"json"
+		);
+	}
+
+	function saveVisitor(jq){
+
+	   jq.post(
+
+	      "https://www.siamparagon.co.th/visitor/save" , { url : parent.document.URL, ref_url : 'https://www.google.com/' },
+
+	      function(data){
+
+	         console.log(data);
+	      },
+	      "json"
+	   );
+	}
+
+	$(document).ready(function(e) {
+
+		if((parent.document.URL).match(/happening/)){
+
+			$('#header #nav-top .nav-main').find('a').eq(0).addClass('current');
+
+		}else if((parent.document.URL).match(/privilege/)){
+
+			$('#header #nav-top .nav-main').find('a').eq(1).addClass('current');
+			adsShow([3], 0);
+
+		}else if((parent.document.URL).match(/tourist/)){
+
+			$('#header #nav-top .nav-main').find('a').eq(3).addClass('current');
+			adsShow([4], 0);
+
+		}else if((parent.document.URL).match(/directory/)){
+
+			$('#header #nav-top .nav-main').find('a').eq(2).addClass('current');
+
+		}else{
+
+			adsShow([1,2], 0);
+		}
+
+		$(".banner-ads").on("click", "a", function(e) {
+
+			e.preventDefault();
+			var bannerLink = $(this), id = $(this).attr('data-id');
+
+			$.ajax({
+				type: "POST",
+				url: "https://www.siamparagon.co.th/ads/click",
+				data: { id : id },
+				async: false,
+				success: function(result){ }
+			});
+
+			window.open(bannerLink.attr('href'), '_blank');
+
+		});
+
+		saveVisitor($);
+	});
+
+	</script>
+
+	<div class="iframe-code">
+		<!-- Facebook Conversion Code for IHUBTH101034_Siam Piwat -->
+		<script>(function() {
+			var _fbq = window._fbq || (window._fbq = []);
+			if (!_fbq.loaded) {
+				var fbds = document.createElement('script');
+				fbds.async = true;
+				fbds.src = 'https://connect.facebook.net/en_US/fbds.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(fbds, s);
+				_fbq.loaded = true;
+			}
+		})();
+		window._fbq = window._fbq || [];
+		window._fbq.push(['track', '6051103734851', {'value':'0.00','currency':'THB'}]);
+		</script>
+		<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6051103734851&amp;cd[value]=0.00&amp;cd[currency]=THB&amp;noscript=1" /></noscript>
+
+	</div>
+
+<script async type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=312090232"></script>
+</body>
+</html>
